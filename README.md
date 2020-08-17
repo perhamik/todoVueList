@@ -1,4 +1,5 @@
 # Todo list with History (Vue.js)
+
 Online single user Todo list, mobile-ready, VueJS powered.
   - Create Notes (contains: title and sequence of tasks)
   - Create Task
@@ -26,12 +27,24 @@ Online single user Todo list, mobile-ready, VueJS powered.
 
 # Screenshots
 > Main Page
-![Alt text](/main-page.jpg?raw=true "Main Page")
+
+![Alt text](/src/main-page.jpg?raw=true "Main Page")
+
 > Edit Page
-![Alt text](/edit-page.jpg?raw=true "Edit Page")
+
+![Alt text](/src/edit-page.jpg?raw=true "Edit Page")
+
 > Confirm Discard Changes
-![Alt text](/modal-changes.jpg?raw=true "Discard Changes Confirm (modal)")
+
+![Alt text](/src/modal-changes.jpg?raw=true "Discard Changes Confirm (modal)")
+
 > Confirm Delete Note
-![Alt text](/modal-delete.jpg?raw=true "Delete Note Confirm (modal)")
+
+![Alt text](/src/modal-delete.jpg?raw=true "Delete Note Confirm (modal)")
+
 > Confirm Delete Note (Edit Page)
-![Alt text](/modal-delete-inside.jpg?raw=true "Delete Note Confirm (modal)")
+
+![Alt text](/src/modal-delete-inside.jpg?raw=true "Delete Note Confirm (modal)")
+
+# Refference
+Link: http://perhamik.pw/
