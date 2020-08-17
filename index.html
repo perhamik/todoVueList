@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ToDo List</title>	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/foundation.min.css">
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+	<div class="wrap">
+		<div class="cont">
+			<div id="app" v-cloak>				
+				<note-list ref="notes-list"
+							v-if="!store.getters.getEditState"></note-list>
+				<task-list ref="task-list"
+							v-else></task-list>
+			</div>
+			<template id="notes-list">
+				<section class="notes">	     
+			     	<div class="note-item"
+			     			v-for="note in store.getters.getNotes"
+			     			:key="note.id">
+			     		<div class="modal-confirm"
+			     				v-if="note.confirmDelete">
+				     		<h4>Confirm Delete?</h4>
+				     		<div class="item-controll-box">
+				     			<button class="controll-blue"
+				     						@click="cancelDeleteNote">Discard</button>
+					     		<button class="controll-red"
+					     					@click="deleteNote">Delete</button>
+					     	</div>
+				     	</div>
+			     		<div class="note-item-block-title">
+			     			<h5>({{note.tasks.length}})</h5>
+			     			<h4 class="note-item-title">{{note.title}}</h4>
+			     		</div>
+			     		<div class="note-item-list">
+			     			<div class="task-item-list"
+			     					v-for="task in note.tasks.slice(0, 3)">
+			     				<input type="checkbox"
+			     						v-model="task.done" disabled>
+			     				<span class="task-item-text">{{task.text}}</span>
+			     			</div>
+			     		</div>
+			     		<div class="item-controll-box">
+			     			<button class="controll-green"
+			     						@click="editNote(note)">Edit</button>
+			     			<button class="controll-red"
+			     						@click="deleteNote(note, 1)">Delete</button>
+			     		</div>
+			     	</div>
+			     	<div class="note-item note-create-new">
+			     		<h4 class="note-item-title">Create new</h4>
+			     		<div class="item-controll-box">
+			     			<button class="controll-blue"
+			     						@click="addNote">Create</button>
+			     		</div>
+			     	</div>			     				      
+			    </section>	
+			</template>
+			<template id="task-list">
+				<section class="todos">	     
+			     	<div class="todo-item"
+			     			v-if="store.getters.getEditState">
+			     		<div class="modal-confirm"
+			     				v-if="store.getters.getDiscardFlag == 2">
+				     		<h4>Discard Changes?</h4>
+				     		<div class="item-controll-box">
+				     			<button class="controll-blue"
+				     						@click="discardAction">Discard</button>
+					     		<button class="controll-green"
+					     					@click="saveAction">Save</button>
+					     	</div>
+				     	</div>
+				     	<div class="modal-confirm"
+				     			v-if="store.getters.getEditNote.confirmDelete">
+				     		<h4>Delete note?</h4>
+				     		<div class="item-controll-box">
+				     			<button class="controll-blue"
+				     						@click="cancelDeleteNote">Discard</button>
+					     		<button class="controll-red"
+					     					@click="deleteNote">Delete</button>
+					     	</div>
+				     	</div>   		
+			     		<input type="text" class="todo-item-title" placeholder="Title"
+			     					v-model="store.getters.getEditNote.title"
+			     					@change="onChange">
+			     		<div class="task-item-list"
+			     				v-for="item in store.getters.getEditNote.tasks">
+			     				<input type="checkbox"
+			     						v-model="item.done"
+			     						@change="onChange">
+			     				<input type="text" placeholder="Task name"
+			     						v-model="item.text"
+			     						@change="onChange">
+			     				<button class="task-item-del"
+			     						@click="deleteTodo(item)">x</button>		     						     				
+			     		</div>
+			     		<div class="task-item-list task-create-new">
+			     			<input type="text" placeholder="Task name"
+			     					v-model="store.state.newTask.text"
+			     					@keyup.enter="addTodo">			     			
+			     		</div>
+			     		<div class="item-controll-box">
+			     			<button class="controll-blue"
+			     						@click="backAction">Back</button>
+			     			<button class="controll-red"
+			     						@click="deleteNote">Delete</button>
+			     			<button class="controll-green"
+			     						@click="saveAction">Save</button>
+			     		</div>
+			     	</div>			     				     				      
+			    </section>
+			</template>			
+		</div>	
+	</div>		
+</body>
+<script type="text/javascript" src="node_modules/vue/dist/vue.min.js"></script>
+<script type="text/javascript" src="node_modules/vuex/dist/vuex.min.js"></script>
+<script type="text/javascript" src="node_modules/vuex-undo-redo/dist/vuex-undo-redo.min.js"></script>
+<script type="text/javascript" src="node_modules/clonedeep/index.js"></script>
+<script src="js/script.js"></script>
+</html>

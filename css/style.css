@@ -1,0 +1,300 @@
+html{
+  font-size: 62.5%;  /* bind 1rem to 10px  */
+}
+body{
+  font-size: 2rem;
+  font-family: 'Tahoma';
+}
+body *{
+  font-family: inherit;
+}
+button{
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+}
+.wrap > .cont{
+  width: 100%;   
+}
+#app{       /* main container  */
+  border:0.05rem solid rgba(150, 150, 150, 0.5);
+}
+.notes{       /* section block  */
+  display: grid;
+  justify-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+.note-item,
+.todo-item{          /* div in section  */
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;  
+  margin: 1.2rem; 
+  padding: 2rem;
+  border-width: 0.05rem;
+  border-style: solid;
+  cursor:default;
+  transition: border .4s linear;
+}
+.note-item-block-title{
+  display: flex;
+  flex-direction: row-reverse;
+}
+.note-item-block-title > h4{
+  width: 100%;
+}
+.note-item-block-title > h5{
+  color: #999;
+}
+.todo-item{
+  margin-right: auto;
+  margin-left: auto;
+  width: 85%;
+  max-width: 100rem;
+}
+.note-create-new{          /*  div in section (create new note)  */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; 
+  opacity: .7;
+  transition: opacity .3s linear;
+}
+.modal-confirm{          /* confirm dialog in notes list */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  padding: 2rem;
+  background-color: rgba(255,255,255,0.9);
+  transition: background-color .4s linear;
+}
+.note-item-title,
+.modal-confirm > h4,
+.todo-item-title{          /*  title style */
+  text-align: center;  
+  margin-bottom: 1rem;
+  border-bottom: 0.1rem solid rgba(210, 210, 210, 0.5);
+}
+
+.note-item-list{margin-bottom: auto;}
+.item-controll-box{          /* div with buttons  */
+  display: flex;
+  flex-flow: row wrap; 
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  transition: opacity .3s linear;
+}
+.item-controll-box > button{  
+  width:45%;             /*  2 buttons in row */
+  max-width: 16rem;
+  padding: 0.5rem 0.2rem;
+  color:white;
+}
+.todo-item .item-controll-box:last-child > button{ width: 30%; }        /* 3 buttons in row  */
+
+       /* BG for buttons */
+.controll-blue{
+  background-color:dodgerblue; 
+}
+.controll-green{
+  background-color:mediumseagreen;  
+}
+.controll-red{
+  background-color:orangered; 
+}
+.notes button{
+  cursor: pointer;       /*  cursor type */
+}
+.task-item-del{            /* little X button for each task in note */
+  padding-bottom: 1rem;  
+  font-weight: 900;
+  color: rgba(250, 50, 50, 0.5);
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.todos input[type="text"]{           /* task text editing  */
+  padding-left: 0;
+  padding-bottom: 1rem;
+  cursor: text;
+  box-shadow: none;
+  border: none;
+  border-bottom: 0.1rem solid rgba(210, 210, 210, 0.5);
+  transition: border .3s linear;
+}
+.todos input[type="text"]:focus{           /* on focus event  */
+  border-bottom-color: rgba(45, 166, 154, 0.8);
+}
+.notes input[type="checkbox"],
+.todos input[type="checkbox"]{           
+  cursor: pointer; 
+  margin-right: 0.8rem;
+}
+.todos .task-item-list{          /*  main div in task editing mode */
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.todos .task-item-list input{     
+  padding-bottom: 0.5rem;
+}
+input[type="checkbox"]:disabled{
+  cursor: default;
+}
+input[type="checkbox"]:checked,
+input[type="checkbox"]:checked + span{           /*  style for completed tasks */
+  text-decoration: line-through dimgrey;
+  opacity: .6;
+}
+
+  /*  Media queries  */
+
+@media screen and (min-width: 0px){
+  body,
+  .todos .task-item-list input{
+    font-size: 1.6rem;
+  }
+  .note-item-title,
+  .modal-confirm > h4,
+  .todo-item-title{
+    font-size: 2.4rem;
+  }
+  .note-item,
+  .todo-item{       /*  size of each block  */
+    min-width: 24rem;
+    min-height: 20rem;
+  }
+  .cont{    
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .notes{   /*  column style  */
+     grid-template-columns: 1fr;  
+  }
+  .note-item,
+  .todo-item{
+    border-color:rgba(250, 150, 0, 0.6);     
+  }
+
+  .note-create-new{
+    opacity: .7;    
+  }
+}
+@media screen and (min-width: 576px){
+  body,
+  .todos .task-item-list input{
+    font-size: 1.7rem;
+  }
+  .note-item-title,
+  .modal-confirm > h4,
+  .todo-item-title{
+    font-size: 2.6rem;
+  }
+  .note-item,
+  .todo-item{
+    min-width: 26.5rem;
+    min-height: 22rem;
+  }
+  .cont{
+    max-width: 540px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 768px) { 
+  body,
+  .todos .task-item-list input{
+    font-size: 1.8rem;
+  }
+  .note-item-title,
+  .modal-confirm > h4,
+  .todo-item-title{
+    font-size: 2.7rem;
+  }
+  .note-item,
+  .todo-item{
+    min-width: 28rem;
+    min-height: 23.5rem;
+  }
+  .cont{
+    max-width: 720px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .notes{   /*  2 item in row style  */
+     grid-template-columns: repeat (2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  body,
+  .todos .task-item-list input{
+    font-size: 1.9rem;
+  }
+  .note-item-title,
+  .modal-confirm > h4,
+  .todo-item-title{
+    font-size: 2.8rem;
+  }
+  .note-item,
+  .todo-item{
+    min-width: 30rem;
+    min-height: 25rem;
+  }
+  .cont{
+    max-width: 940px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .notes{   /*  2 item in row style  */
+     grid-template-columns: repeat(2, 1fr);
+  }
+  .note-item,
+  .todo-item{
+    border-color: rgba(250, 150, 0, 0.4);    
+  }
+  .note-item:hover,
+  .todo-item:hover{
+    border-color: rgba(250, 150, 0, 0.8);
+  }
+  .note-item:hover > .note-item-control{
+    opacity: 1;
+  }
+  .note-create-new{
+    opacity: .7;    
+  }
+  .note-create-new:hover{
+    opacity: 1;
+  }
+  .note-item-control{
+    opacity: .8;   
+  }
+}
+
+@media (min-width: 1200px) {
+  .cont{
+    max-width: 1120px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .notes{   /*  3 item in row style  */
+     grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1600px) {
+  .cont{
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .notes{   /*  4 item in row style  */
+     grid-template-columns: repeat(4, 1fr);
+  }
+}
